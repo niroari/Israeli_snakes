@@ -669,20 +669,20 @@ export default function Presentation() {
       case 2:
         return (
           <div className="flex flex-col flex-1 h-full">
-            <div className="mb-4">
+            <div className="mb-1.5">
               <span className="text-xs font-bold text-rose-500 uppercase tracking-widest bg-rose-500/10 px-2.5 py-1 rounded">
                 להכיר ולכבד (ממרחק)
               </span>
-              <h3 className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-50 mt-1">
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-zinc-50 mt-1">
                 הנחשים הארסיים המרכזיים בישראל
               </h3>
             </div>
 
             {/* Sub-navigation tabs */}
-            <div className="flex border-b border-zinc-200 dark:border-zinc-800 mb-5">
+            <div className="flex border-b border-zinc-200 dark:border-zinc-800 mb-2">
               <button
                 onClick={() => { setActiveViperTab("daboia"); playSound("click"); }}
-                className={`py-2 px-4 text-sm font-bold border-b-2 transition-all ${
+                className={`py-1.5 px-4 text-xs sm:text-sm font-bold border-b-2 transition-all ${
                   activeViperTab === "daboia"
                     ? "border-rose-500 text-rose-600 dark:text-rose-450"
                     : "border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-350"
@@ -692,10 +692,10 @@ export default function Presentation() {
               </button>
               <button
                 onClick={() => { setActiveViperTab("echis"); playSound("click"); }}
-                className={`py-2 px-4 text-sm font-bold border-b-2 transition-all ${
+                className={`py-1.5 px-4 text-xs sm:text-sm font-bold border-b-2 transition-all ${
                   activeViperTab === "echis"
                     ? "border-rose-500 text-rose-600 dark:text-rose-450"
-                    : "border-transparent text-zinc-505 hover:text-zinc-700 dark:hover:text-zinc-350"
+                    : "border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-350"
                 }`}
               >
                 אפעה מגוון
@@ -703,25 +703,25 @@ export default function Presentation() {
             </div>
 
             {/* Tab content */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-              <div className="md:col-span-7 space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-start mt-1">
+              <div className="md:col-span-7 space-y-2">
                 {activeViperTab === "daboia" ? (
                   <>
-                    <h4 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
-                      🐍 צפע מצוי <span className="text-xs text-rose-500 font-bold bg-rose-500/10 px-2 py-0.5 rounded-full border border-rose-500/20">הנפוץ והמסוכן ביותר</span>
+                    <h4 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+                      🐍 צפע מצוי <span className="text-[10px] sm:text-xs text-rose-500 font-bold bg-rose-500/10 px-2 py-0.5 rounded-full border border-rose-500/20">הנפוץ והמסוכן ביותר</span>
                     </h4>
-                    <div className="space-y-3 text-xs sm:text-sm text-zinc-600 dark:text-zinc-350">
+                    <div className="space-y-2 text-xs sm:text-sm text-zinc-650 dark:text-zinc-350 font-medium">
                       <p className="leading-relaxed">
                         הנחש הארסי הנפוץ ביותר בישראל. שולט מהצפון ועד לצפון-מרכז הנגב. רוב מקרי ההכשה בארץ מיוחסים למין זה.
                       </p>
-                      <div className="p-3 bg-zinc-50 dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-800 space-y-2">
+                      <div className="p-2.5 bg-zinc-50 dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-800 space-y-1.5">
                         <div className="flex gap-2">
                           <span className="font-bold text-rose-500 shrink-0">סימני זיהוי:</span>
                           <span>גוף חסון ועבה, ראש משולש ורחב הבולט מהצוואר. על גבו <strong>פס עקלקל (זיגזג) כהה ורציף</strong> הנמשך מהראש ועד הזנב.</span>
                         </div>
                         <div className="flex gap-2">
                           <span className="font-bold text-rose-500 shrink-0">סביבת מחיה:</span>
-                          <span>אוהב במיוחד אזורים מיושבים, גינות בתים, אזורים חקלאיים וערימות פסולת – שם הוא מוצא שפע של מכרסמים.</span>
+                          <span>אוהב במיוחד אזורים מיושבים, גינות בתים, אזורים חקלאיים וערימות פסולת – שם הוא מוצא מכרסמים.</span>
                         </div>
                       </div>
                     </div>
