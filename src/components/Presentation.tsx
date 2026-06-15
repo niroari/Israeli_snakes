@@ -311,7 +311,7 @@ export default function Presentation() {
           {/* Sound Toggle */}
           <button
             onClick={() => setSoundEnabled(!soundEnabled)}
-            className="p-2 rounded-lg text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-850 transition-colors"
+            className="p-2 rounded-lg text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
             title={soundEnabled ? "השתק צלילים" : "הפעל צלילים"}
           >
             {soundEnabled ? <Volume2 className="h-4 w-4 text-emerald-500" /> : <VolumeX className="h-4 w-4" />}
@@ -320,7 +320,7 @@ export default function Presentation() {
           {/* Theme Toggle */}
           <button
             onClick={() => { setIsDarkMode(!isDarkMode); playSound("click"); }}
-            className="p-2 rounded-lg text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-850 transition-colors"
+            className="p-2 rounded-lg text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
             title={isDarkMode ? "מצב יום" : "מצב לילה"}
           >
             {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
@@ -330,7 +330,7 @@ export default function Presentation() {
           {viewMode === "presentation" && (
             <button
               onClick={toggleFullscreen}
-              className="p-2 rounded-lg text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-850 transition-colors"
+              className="p-2 rounded-lg text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
               title="מסך מלא"
             >
               {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
@@ -344,7 +344,7 @@ export default function Presentation() {
         {viewMode === "presentation" ? (
           /* PRESENTATION MODE: Single 16:9 Slide Canvas */
           <div className="w-full max-w-6xl mx-auto flex flex-col gap-4">
-            <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-xl dark:shadow-emerald-950/5 overflow-hidden border border-zinc-200 dark:border-zinc-850 slide-aspect relative flex flex-col justify-between p-8 sm:p-12 transition-colors duration-300 select-none">
+            <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-xl dark:shadow-emerald-950/5 overflow-hidden border border-zinc-200 dark:border-zinc-800 slide-aspect relative flex flex-col justify-between p-8 sm:p-12 transition-colors duration-300 select-none">
               
               {/* Decorative background grid */}
               <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(16,185,129,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,185,129,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
@@ -450,7 +450,7 @@ export default function Presentation() {
                 key={idx}
                 className="bg-white dark:bg-zinc-900 rounded-2xl p-8 sm:p-10 shadow border border-zinc-200 dark:border-zinc-800 relative transition-colors duration-300"
               >
-                <div className="absolute top-6 left-6 text-xs bg-zinc-150 dark:bg-zinc-850 text-zinc-550 px-3 py-1 rounded-full font-bold">
+                <div className="absolute top-6 left-6 text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-500 px-3 py-1 rounded-full font-bold">
                   שקף {idx + 1}
                 </div>
                 <div className="border-b border-zinc-100 dark:border-zinc-800 pb-4 mb-6">
@@ -478,7 +478,7 @@ export default function Presentation() {
 
         {/* Citations and Image Attributions Footer */}
         <footer className="w-full max-w-4xl mx-auto mt-12 mb-8 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 transition-colors duration-300">
-          <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 mb-3 flex items-center gap-2 pb-2 border-b border-zinc-200 dark:border-zinc-850">
+          <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 mb-3 flex items-center gap-2 pb-2 border-b border-zinc-200 dark:border-zinc-800">
             <Info className="h-4 w-4 text-emerald-500" />
             מקורות מידע ותמונות (רישיונות פתוחים)
           </h4>
@@ -487,14 +487,14 @@ export default function Presentation() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {Object.values(IMAGES).map((img, idx) => (
-              <div key={idx} className="bg-white dark:bg-zinc-950 p-3 rounded-lg border border-zinc-200 dark:border-zinc-850 flex items-center gap-3">
+              <div key={idx} className="bg-white dark:bg-zinc-950 p-3 rounded-lg border border-zinc-200 dark:border-zinc-800 flex items-center gap-3">
                 <img
                   src={img.url}
                   alt={img.commonName}
                   className="h-10 w-10 object-cover rounded bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800"
                 />
                 <div className="min-w-0 flex-1">
-                  <div className="text-xs font-bold text-zinc-850 dark:text-zinc-150 truncate">{img.commonName}</div>
+                  <div className="text-xs font-bold text-zinc-800 dark:text-zinc-200 truncate">{img.commonName}</div>
                   <div className="text-[10px] text-zinc-500 dark:text-zinc-400 truncate">
                     יוצר: {img.author} | רישיון: {img.license}
                   </div>
@@ -531,7 +531,7 @@ export default function Presentation() {
                 מי מפחד ממי? נתונים, זנים וכללי התנהגות בשטח.
               </p>
               
-              <div className="bg-zinc-55 dark:bg-zinc-800/40 border border-zinc-200 dark:border-zinc-850 rounded-xl p-5 space-y-3">
+              <div className="bg-zinc-50 dark:bg-zinc-800/40 border border-zinc-200 dark:border-zinc-800 rounded-xl p-5 space-y-3">
                 <h4 className="text-xs uppercase tracking-wider font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
                   💭 שאלה למחשבה לדיון כיתתי
                 </h4>
@@ -542,7 +542,7 @@ export default function Presentation() {
             </div>
 
             {/* Interactive reaction poll on right */}
-            <div className="lg:col-span-5 bg-zinc-50 dark:bg-zinc-850 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-5 space-y-4 shadow-sm">
+            <div className="lg:col-span-5 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-5 space-y-4 shadow-sm">
               <div className="text-sm font-bold text-zinc-700 dark:text-zinc-300">
                 סקר מהיר בכיתה: מה עושים כשרואים נחש?
               </div>
@@ -568,7 +568,7 @@ export default function Presentation() {
                       <span>{item.text}</span>
                       {selectedReaction === idx && (idx === 2 ? <Check className="h-4 w-4 text-emerald-500" /> : <Info className="h-4 w-4 text-amber-500" />)}
                     </div>
-                    <div className="text-[10px] text-zinc-400 dark:text-zinc-550 mt-0.5">{item.desc}</div>
+                    <div className="text-[10px] text-zinc-400 dark:text-zinc-500 mt-0.5">{item.desc}</div>
                   </button>
                 ))}
               </div>
@@ -578,7 +578,7 @@ export default function Presentation() {
                   <motion.div
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="p-3 bg-zinc-150 dark:bg-zinc-800 text-[11px] sm:text-xs rounded-xl border border-zinc-200 dark:border-zinc-750 text-zinc-600 dark:text-zinc-350 leading-relaxed"
+                    className="p-3 bg-zinc-200 dark:bg-zinc-800 text-[11px] sm:text-xs rounded-xl border border-zinc-200 dark:border-zinc-750 text-zinc-600 dark:text-zinc-350 leading-relaxed"
                   >
                     {selectedReaction === 2 ? (
                       <span className="text-emerald-700 dark:text-emerald-300 font-bold block mb-1">מעולה! זוהי התגובה הנכונה ביותר.</span>
@@ -607,7 +607,7 @@ export default function Presentation() {
               </p>
               
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-zinc-50 dark:bg-zinc-850 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 text-center">
+                <div className="bg-zinc-50 dark:bg-zinc-800 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 text-center">
                   <div className="text-4xl sm:text-5xl font-black text-zinc-900 dark:text-zinc-100">41</div>
                   <div className="text-xs text-zinc-500 dark:text-zinc-405 font-bold mt-1">מיני נחשים בישראל</div>
                 </div>
@@ -623,7 +623,7 @@ export default function Presentation() {
             </div>
 
             {/* Visual Dot Matrix Grid */}
-            <div className="bg-zinc-50 dark:bg-zinc-850 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-5 flex flex-col justify-between">
+            <div className="bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-5 flex flex-col justify-between">
               <div>
                 <div className="text-xs font-bold text-zinc-700 dark:text-zinc-300 mb-2 flex justify-between items-center">
                   <span>מפת המינים (כל נקודה מייצגת מין של נחש)</span>
@@ -695,7 +695,7 @@ export default function Presentation() {
                 className={`py-2 px-4 text-sm font-bold border-b-2 transition-all ${
                   activeViperTab === "echis"
                     ? "border-rose-500 text-rose-600 dark:text-rose-450"
-                    : "border-transparent text-zinc-555 hover:text-zinc-700 dark:hover:text-zinc-350"
+                    : "border-transparent text-zinc-505 hover:text-zinc-700 dark:hover:text-zinc-350"
                 }`}
               >
                 אפעה מגוון
@@ -714,7 +714,7 @@ export default function Presentation() {
                       <p className="leading-relaxed">
                         הנחש הארסי הנפוץ ביותר בישראל. שולט מהצפון ועד לצפון-מרכז הנגב. רוב מקרי ההכשה בארץ מיוחסים למין זה.
                       </p>
-                      <div className="p-3 bg-zinc-50 dark:bg-zinc-850 rounded-lg border border-zinc-200 dark:border-zinc-800 space-y-2">
+                      <div className="p-3 bg-zinc-50 dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-800 space-y-2">
                         <div className="flex gap-2">
                           <span className="font-bold text-rose-500 shrink-0">סימני זיהוי:</span>
                           <span>גוף חסון ועבה, ראש משולש ורחב הבולט מהצוואר. על גבו <strong>פס עקלקל (זיגזג) כהה ורציף</strong> הנמשך מהראש ועד הזנב.</span>
@@ -735,7 +735,7 @@ export default function Presentation() {
                       <p className="leading-relaxed font-medium">
                         שולט באזורים המדבריים והמצוקים של ישראל (נגב, ערבה, בקעת הירדן ומדבר יהודה). הוא מטפס מצוין ופעיל במיוחד בלילות הקיץ החמים.
                       </p>
-                      <div className="p-3 bg-zinc-50 dark:bg-zinc-850 rounded-lg border border-zinc-200 dark:border-zinc-800 space-y-2 text-xs sm:text-sm">
+                      <div className="p-3 bg-zinc-50 dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-800 space-y-2 text-xs sm:text-sm">
                         <div className="flex gap-2">
                           <span className="font-bold text-amber-500 shrink-0">סימני זיהוי:</span>
                           <span>קטן ודק יותר מהצפע. בעל צבעי הסוואה מדבריים (חום-צהבהב), ועל גבו סדרת <strong>כתמים בהירים ורוחביים</strong>.</span>
@@ -823,7 +823,7 @@ export default function Presentation() {
                   <span>צילום: {IMAGES.atractaspis.author}</span>
                 </div>
               </div>
-              <div className="p-3 bg-zinc-50 dark:bg-zinc-850 rounded-xl border border-zinc-200 dark:border-zinc-800">
+              <div className="p-3 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-800">
                 <div className="text-[10px] font-bold text-zinc-500 dark:text-zinc-400">📍 אזורי תפוצה בישראל</div>
                 <div className="text-xs text-zinc-700 dark:text-zinc-300 font-semibold mt-0.5">
                   בקעת הירדן, אזור ים המלח (עין גדי – על שמו הוא נקרא) והערבה.
@@ -883,14 +883,14 @@ export default function Presentation() {
               {lookalikeView === "side-by-side" && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                   <div className="space-y-4">
-                    <h4 className="text-base font-bold text-zinc-900 dark:text-zinc-150 flex items-center gap-2">
+                    <h4 className="text-base font-bold text-zinc-900 dark:text-zinc-200 flex items-center gap-2">
                       🔍 הטועה הגדול: איך מבדילים ביניהם?
                     </h4>
                     <p className="text-xs text-zinc-600 dark:text-zinc-350 leading-relaxed">
                       זעמן המטבעות הוא נחש לא-ארסי המבצע <strong>חיקוי בייטסיאני</strong>: הוא פיתח דוגמת גב המזכירה את הצפע על מנת להטעות טורפים. בגלל המראה שלו, בני אדם רבים מתבלבלים בינו לבין הצפע והורגים אותו לשווא.
                     </p>
                     
-                    <div className="bg-zinc-50 dark:bg-zinc-850 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 space-y-2">
+                    <div className="bg-zinc-50 dark:bg-zinc-800 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 space-y-2">
                       <div className="flex justify-between items-center text-xs font-bold border-b border-zinc-200 dark:border-zinc-750 pb-1.5 mb-1.5">
                         <span className="text-rose-500">צפע מצוי (💀 ארסי)</span>
                         <span className="text-emerald-500">זעמן מטבעות (🌿 לא ארסי)</span>
@@ -1001,7 +1001,7 @@ export default function Presentation() {
 
             {/* Ecological Cards Grid */}
             <div className="grid grid-cols-1 gap-3.5">
-              <div className="p-4 bg-zinc-50 dark:bg-zinc-850 rounded-xl border border-zinc-200 dark:border-zinc-800 flex items-start gap-3.5">
+              <div className="p-4 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-800 flex items-start gap-3.5">
                 <div className="p-2 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold text-xs shrink-0">01</div>
                 <div>
                   <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 mb-0.5">מדבירים ביולוגיים יעילים</h4>
@@ -1011,7 +1011,7 @@ export default function Presentation() {
                 </div>
               </div>
 
-              <div className="p-4 bg-zinc-50 dark:bg-zinc-850 rounded-xl border border-zinc-200 dark:border-zinc-800 flex items-start gap-3.5">
+              <div className="p-4 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-800 flex items-start gap-3.5">
                 <div className="p-2 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold text-xs shrink-0">02</div>
                 <div>
                   <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 mb-0.5">חוליה קריטית בשרשרת המזון</h4>
@@ -1044,7 +1044,7 @@ export default function Presentation() {
                   { title: "📞 קוראים ללוכד מוסמך", text: "אם הנחש נמצא בחצר בית או בבית הספר, יש להתרחק ולקרוא מיד ללוכד נחשים מורשה מטעם רט\"ג." },
                   { title: "🥾 בטיחות בטיולים וביציאה לטבע", text: "הולכים בשבילים מסומנים, נועלים נעליים סגורות, ולא מכניסים ידיים למחילות או מתחת לאבנים בלי להסתכל." }
                 ].map((item, idx) => (
-                  <div key={idx} className="p-3 bg-zinc-50 dark:bg-zinc-850 rounded-xl border border-zinc-200 dark:border-zinc-800 space-y-1">
+                  <div key={idx} className="p-3 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-800 space-y-1">
                     <h4 className="text-xs sm:text-sm font-bold text-emerald-600 dark:text-emerald-400">{item.title}</h4>
                     <p className="text-[10px] sm:text-xs text-zinc-500 dark:text-zinc-450 leading-relaxed">{item.text}</p>
                   </div>
@@ -1076,7 +1076,7 @@ export default function Presentation() {
         return (
           <div className="flex flex-col flex-1 justify-between">
             {/* Quiz header */}
-            <div className="mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-150 dark:border-zinc-800">
+            <div className="mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-200 dark:border-zinc-800">
               <div>
                 <span className="text-xs font-bold text-emerald-500 bg-emerald-500/10 px-2.5 py-1 rounded">
                   סיכום ובוחן פתע קליל
@@ -1098,7 +1098,7 @@ export default function Presentation() {
               {!quizSubmitted ? (
                 /* Question card */
                 <div className="space-y-4">
-                  <div className="text-base sm:text-lg font-bold text-zinc-850 dark:text-zinc-100 bg-emerald-500/[0.02] border border-emerald-500/10 p-4 rounded-xl">
+                  <div className="text-base sm:text-lg font-bold text-zinc-800 dark:text-zinc-100 bg-emerald-500/[0.02] border border-emerald-500/10 p-4 rounded-xl">
                     {QUIZ_QUESTIONS[activeQuestion].question}
                   </div>
                   
@@ -1214,12 +1214,12 @@ export default function Presentation() {
                   </div>
 
                   {/* Review answers collapse panels */}
-                  <div className="text-right max-h-40 overflow-y-auto space-y-2 border border-zinc-200 dark:border-zinc-850 rounded-xl p-3 bg-zinc-50 dark:bg-zinc-900">
+                  <div className="text-right max-h-40 overflow-y-auto space-y-2 border border-zinc-200 dark:border-zinc-800 rounded-xl p-3 bg-zinc-50 dark:bg-zinc-900">
                     {QUIZ_QUESTIONS.map((q, idx) => {
                       const isCorrect = quizAnswers[idx] === q.correctAnswer;
                       return (
                         <div key={idx} className="p-2 border-b border-zinc-200 dark:border-zinc-800 last:border-b-0 text-xs">
-                          <div className="font-bold flex items-center gap-1.5 mb-1 text-zinc-850 dark:text-zinc-150">
+                          <div className="font-bold flex items-center gap-1.5 mb-1 text-zinc-800 dark:text-zinc-200">
                             {isCorrect ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <X className="h-3.5 w-3.5 text-red-500" />}
                             <span>שאלה {idx + 1}: {isCorrect ? "נכון" : "שגוי"}</span>
                           </div>
