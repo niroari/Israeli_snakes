@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Rubik } from "next/font/google";
+import { Alef } from "next/font/google";
 import "./globals.css";
 
-const rubik = Rubik({
-  variable: "--font-rubik",
-  subsets: ["latin", "hebrew"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+const alef = Alef({
+  variable: "--font-alef",
+  subsets: ["hebrew", "latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function RootLayout({
     <html
       lang="he"
       dir="rtl"
-      className={`${rubik.variable} h-full antialiased`}
+      className={`${alef.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50 selection:bg-emerald-500 selection:text-white">
         {children}
