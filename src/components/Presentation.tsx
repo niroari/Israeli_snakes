@@ -745,53 +745,55 @@ export default function Presentation() {
         );
       case 2:
         return (
-          <div className="flex flex-col flex-1 h-full">
-            <div className="mb-1.5">
-              <span className="text-xs font-bold text-rose-500 uppercase tracking-widest bg-rose-500/10 px-2.5 py-1 rounded">
-                להכיר ולכבד (ממרחק)
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-zinc-50 mt-1">
-                הנחשים הארסיים המרכזיים בישראל
-              </h3>
-            </div>
+          <div className="flex flex-col flex-1 h-full justify-between gap-4">
+            <div>
+              <div className="mb-2">
+                <span className="text-xs font-bold text-rose-500 uppercase tracking-widest bg-rose-500/10 px-2.5 py-1 rounded">
+                  להכיר ולכבד (ממרחק)
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-zinc-50 mt-1">
+                  הנחשים הארסיים המרכזיים בישראל
+                </h3>
+              </div>
 
-            {/* Sub-navigation tabs */}
-            <div className="flex border-b border-zinc-200 dark:border-zinc-800 mb-2">
-              <button
-                onClick={() => { setActiveViperTab("daboia"); playSound("click"); }}
-                className={`py-1.5 px-4 text-xs sm:text-sm font-bold border-b-2 transition-all ${
-                  activeViperTab === "daboia"
-                    ? "border-rose-500 text-rose-600 dark:text-rose-450"
-                    : "border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-350"
-                }`}
-              >
-                צפע מצוי (ארצישראלי)
-              </button>
-              <button
-                onClick={() => { setActiveViperTab("echis"); playSound("click"); }}
-                className={`py-1.5 px-4 text-xs sm:text-sm font-bold border-b-2 transition-all ${
-                  activeViperTab === "echis"
-                    ? "border-rose-500 text-rose-600 dark:text-rose-450"
-                    : "border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-350"
-                }`}
-              >
-                אפעה מגוון
-              </button>
+              {/* Sub-navigation tabs */}
+              <div className="flex border-b border-zinc-200 dark:border-zinc-800 mb-2">
+                <button
+                  onClick={() => { setActiveViperTab("daboia"); playSound("click"); }}
+                  className={`py-1.5 px-4 text-xs sm:text-sm font-bold border-b-2 transition-all ${
+                    activeViperTab === "daboia"
+                      ? "border-rose-500 text-rose-600 dark:text-rose-450"
+                      : "border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-350"
+                  }`}
+                >
+                  צפע מצוי (ארצישראלי)
+                </button>
+                <button
+                  onClick={() => { setActiveViperTab("echis"); playSound("click"); }}
+                  className={`py-1.5 px-4 text-xs sm:text-sm font-bold border-b-2 transition-all ${
+                    activeViperTab === "echis"
+                      ? "border-rose-500 text-rose-600 dark:text-rose-450"
+                      : "border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-350"
+                  }`}
+                >
+                  אפעה מגוון
+                </button>
+              </div>
             </div>
 
             {/* Tab content */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-start mt-1">
-              <div className="md:col-span-7 space-y-2">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center flex-1 mt-2">
+              <div className="md:col-span-7 space-y-3">
                 {activeViperTab === "daboia" ? (
                   <>
-                    <h4 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
-                      🐍 צפע מצוי <span className="text-[10px] sm:text-xs text-rose-500 font-bold bg-rose-500/10 px-2 py-0.5 rounded-full border border-rose-500/20">הנפוץ והמסוכן ביותר</span>
+                    <h4 className="text-lg sm:text-xl font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+                      🐍 צפע מצוי <span className="text-xs text-rose-500 font-bold bg-rose-500/10 px-2.5 py-0.5 rounded-full border border-rose-500/20">הנפוץ והמסוכן ביותר</span>
                     </h4>
-                    <div className="space-y-2 text-xs sm:text-sm text-zinc-650 dark:text-zinc-350 font-medium">
+                    <div className="space-y-3 text-xs sm:text-sm text-zinc-650 dark:text-zinc-350 font-medium">
                       <p className="leading-relaxed">
                         הנחש הארסי הנפוץ ביותר בישראל. שולט מהצפון ועד לצפון-מרכז הנגב. רוב מקרי ההכשה בארץ מיוחסים למין זה.
                       </p>
-                      <div className="p-2.5 bg-zinc-50 dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-800 space-y-1.5">
+                      <div className="p-3 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-800 space-y-2">
                         <div className="flex gap-2">
                           <span className="font-bold text-rose-500 shrink-0">סימני זיהוי:</span>
                           <span>גוף חסון ועבה, ראש משולש ורחב הבולט מהצוואר. על גבו <strong>פס עקלקל (זיגזג) כהה ורציף</strong> הנמשך מהראש ועד הזנב.</span>
@@ -805,14 +807,14 @@ export default function Presentation() {
                   </>
                 ) : (
                   <>
-                    <h4 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
-                      🏜️ אפעה מגוון <span className="text-xs text-amber-500 font-bold bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">מלך המדבר</span>
+                    <h4 className="text-lg sm:text-xl font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+                      🏜️ אפעה מגוון <span className="text-xs text-amber-500 font-bold bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-rose-500/20">מלך המדבר</span>
                     </h4>
                     <div className="space-y-3 text-xs sm:text-sm text-zinc-650 dark:text-zinc-350">
                       <p className="leading-relaxed font-medium">
                         שולט באזורים המדבריים והמצוקים של ישראל (נגב, ערבה, בקעת הירדן ומדבר יהודה). הוא מטפס מצוין ופעיל במיוחד בלילות הקיץ החמים.
                       </p>
-                      <div className="p-3 bg-zinc-50 dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-800 space-y-2 text-xs sm:text-sm">
+                      <div className="p-3 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-800 space-y-2 text-xs sm:text-sm">
                         <div className="flex gap-2">
                           <span className="font-bold text-amber-500 shrink-0">סימני זיהוי:</span>
                           <span>קטן ודק יותר מהצפע. בעל צבעי הסוואה מדבריים (חום-צהבהב), ועל גבו סדרת <strong>כתמים בהירים ורוחביים</strong>.</span>
@@ -830,7 +832,7 @@ export default function Presentation() {
               {/* Photo Display */}
               <div 
                 onClick={() => setLightboxImage(activeViperTab === "daboia" ? IMAGES.daboia : IMAGES.echis)}
-                className="md:col-span-5 relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-video md:aspect-[4/3] max-h-[190px] w-full flex bg-zinc-100 dark:bg-zinc-900 cursor-zoom-in"
+                className="md:col-span-5 relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-[4/3] max-h-[255px] w-full flex bg-zinc-100 dark:bg-zinc-900 cursor-zoom-in"
                 title="לחץ להגדלה"
               >
                 <img
