@@ -671,73 +671,80 @@ export default function Presentation() {
         );
       case 1:
         return (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-            <div className="space-y-4">
-              <span className="text-xs font-bold text-emerald-500 uppercase tracking-widest bg-emerald-500/15 px-2.5 py-1 rounded">
-                ישראל – מעצמת זוחלים!
-              </span>
-              <h3 className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-50">
-                נחשי ישראל במספרים
-              </h3>
-              <p className="text-sm text-zinc-650 dark:text-zinc-305 leading-relaxed">
-                בשל מיקומה הייחודי של ישראל כגשר יבשתי המקשר בין שלוש יבשות (אסיה, אפריקה ואירופה), נוצר בה מגוון ביולוגי מדהים.
-              </p>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-zinc-50 dark:bg-zinc-800 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 text-center">
-                  <div className="text-4xl sm:text-5xl font-black text-zinc-900 dark:text-zinc-100">41</div>
-                  <div className="text-xs text-zinc-500 dark:text-zinc-405 font-bold mt-1">מיני נחשים בישראל</div>
-                </div>
-                <div className="bg-rose-500/10 dark:bg-rose-950/20 p-4 rounded-xl border border-rose-250 dark:border-rose-900/35 text-center">
-                  <div className="text-4xl sm:text-5xl font-black text-rose-600 dark:text-rose-450">9</div>
-                  <div className="text-xs text-rose-600 dark:text-rose-400 font-bold mt-1">מינים ארסיים בלבד</div>
-                </div>
-              </div>
-              
-              <div className="text-xs sm:text-sm font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 p-3 rounded-lg border border-emerald-500/20">
-                השורה התחתונה: רובם המוחלט של הנחשים סביבנו (מעל 78%) אינם מזיקים לנו בכלל!
+          <div className="flex flex-col flex-1 h-full justify-between gap-4">
+            <div>
+              <div className="mb-2">
+                <span className="text-xs font-bold text-emerald-500 uppercase tracking-widest bg-emerald-500/15 px-2.5 py-1 rounded">
+                  ישראל – מעצמת זוחלים!
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-zinc-50 mt-1">
+                  נחשי ישראל במספרים
+                </h3>
               </div>
             </div>
 
-            {/* Visual Dot Matrix Grid */}
-            <div className="bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-5 flex flex-col justify-between">
-              <div>
-                <div className="text-xs font-bold text-zinc-700 dark:text-zinc-300 mb-2 flex justify-between items-center">
-                  <span>מפת המינים (כל נקודה מייצגת מין של נחש)</span>
-                  <span className="text-[10px] text-zinc-500">העבירו עכבר לזיהוי</span>
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center flex-1 mt-2">
+              <div className="md:col-span-6 space-y-4">
+                <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed font-semibold">
+                  בשל מיקומה הייחודי של ישראל כגשר יבשתי המקשר בין שלוש יבשות (אסיה, אפריקה ואירופה), נוצר בה מגוון ביולוגי מדהים.
+                </p>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-zinc-50 dark:bg-zinc-800 p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 text-center shadow-sm">
+                    <div className="text-4xl sm:text-5xl font-black text-emerald-600 dark:text-emerald-400">41</div>
+                    <div className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-extrabold mt-1">מיני נחשים בישראל</div>
+                  </div>
+                  <div className="bg-rose-500/10 dark:bg-rose-950/20 p-5 rounded-xl border border-rose-200 dark:border-rose-900/30 text-center shadow-sm">
+                    <div className="text-4xl sm:text-5xl font-black text-rose-600 dark:text-rose-400">9</div>
+                    <div className="text-xs sm:text-sm text-rose-600 dark:text-rose-400 font-extrabold mt-1">מינים ארסיים בלבד</div>
+                  </div>
                 </div>
                 
-                {/* 41 Dots */}
-                <div className="grid grid-cols-7 sm:grid-cols-9 gap-2 p-3 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800">
-                  {Array.from({ length: 41 }).map((_, idx) => {
-                    const isVenomous = idx < 9;
-                    return (
-                      <div
-                        key={idx}
-                        className={`group relative aspect-square rounded-lg flex items-center justify-center text-[10px] font-bold transition-all duration-300 cursor-help ${
-                          isVenomous
-                            ? "bg-rose-500 text-white shadow-sm shadow-rose-500/30 hover:scale-110"
-                            : "bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-500/35 hover:scale-110"
-                        }`}
-                      >
-                        {idx + 1}
-                        {/* Tooltip */}
-                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-24 bg-zinc-950 text-white text-[9px] text-center p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20 shadow-lg">
-                          {isVenomous ? "💀 נחש ארסי" : "🌿 לא מזיק"}
-                        </div>
-                      </div>
-                    );
-                  })}
+                <div className="text-xs sm:text-sm font-extrabold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 p-3.5 rounded-lg border border-emerald-500/20 shadow-sm leading-relaxed">
+                  השורה התחתונה: רובם המוחלט של הנחשים סביבנו (מעל 78%) אינם מזיקים לנו בכלל!
                 </div>
               </div>
 
-              {/* Range Information */}
-              <div className="mt-4 pt-3 border-t border-zinc-200 dark:border-zinc-750 flex items-center gap-3">
-                <div className="p-2 rounded bg-amber-500/10 text-amber-500">
-                  <Compass className="h-5 w-5" />
+              {/* Visual Dot Matrix Grid */}
+              <div className="md:col-span-6 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-5 flex flex-col justify-between h-full shadow-sm">
+                <div>
+                  <div className="text-xs sm:text-sm font-extrabold text-zinc-700 dark:text-zinc-300 mb-3 flex justify-between items-center">
+                    <span>מפת המינים (כל נקודה מייצגת מין של נחש)</span>
+                    <span className="text-[10px] text-zinc-500 font-normal">העבירו עכבר לזיהוי</span>
+                  </div>
+                  
+                  {/* 41 Dots */}
+                  <div className="grid grid-cols-7 sm:grid-cols-9 gap-2 p-3 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-inner">
+                    {Array.from({ length: 41 }).map((_, idx) => {
+                      const isVenomous = idx < 9;
+                      return (
+                        <div
+                          key={idx}
+                          className={`group relative aspect-square rounded-lg flex items-center justify-center text-[10px] sm:text-xs font-black transition-all duration-300 cursor-help ${
+                            isVenomous
+                              ? "bg-rose-500 text-white shadow-sm shadow-rose-500/30 hover:scale-110"
+                              : "bg-emerald-500/20 text-emerald-700 dark:text-emerald-450 hover:bg-emerald-500/35 hover:scale-110"
+                          }`}
+                        >
+                          {idx + 1}
+                          {/* Tooltip */}
+                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-24 bg-zinc-950 text-white text-[9px] text-center p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20 shadow-lg font-bold">
+                            {isVenomous ? "💀 נחש ארסי" : "🌿 לא מזיק"}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-                <div className="text-[11px] sm:text-xs text-zinc-600 dark:text-zinc-350 leading-relaxed">
-                  <strong>תפוצה נרחבת:</strong> מהחרמון המושלג בצפון ועד אילת הצחיחה בדרום. הסביבה המשתנה בישראל מאפשרת לכל מין למצוא את בית הגידול המושלם עבורו.
+
+                {/* Range Information */}
+                <div className="mt-4 pt-3 border-t border-zinc-200 dark:border-zinc-800 flex items-center gap-3">
+                  <div className="p-2.5 rounded bg-amber-500/10 text-amber-500 shrink-0 shadow-sm">
+                    <Compass className="h-5.5 w-5.5" />
+                  </div>
+                  <div className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-semibold">
+                    <strong>תפוצה נרחבת:</strong> מהחרמון המושלג בצפון ועד אילת הצחיחה בדרום. הסביבה המשתנה בישראל מאפשרת לכל מין למצוא את בית הגידול המושלם עבורו.
+                  </div>
                 </div>
               </div>
             </div>
@@ -928,74 +935,76 @@ export default function Presentation() {
         );
       case 4:
         return (
-          <div className="flex flex-col flex-1 h-full">
-            <div className="mb-3">
-              <span className="text-xs font-bold text-emerald-500 uppercase tracking-widest bg-emerald-500/10 px-2.5 py-1 rounded">
-                המדבירים הטבעיים של הטבע
-              </span>
-              <h3 className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-50 mt-1">
-                החברים הלא-ארסיים של האדם
-              </h3>
-            </div>
+          <div className="flex flex-col flex-1 h-full justify-between gap-4">
+            <div>
+              <div className="mb-2">
+                <span className="text-xs font-bold text-emerald-500 uppercase tracking-widest bg-emerald-500/10 px-2.5 py-1 rounded">
+                  המדבירים הטבעיים של הטבע
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-zinc-50 mt-1">
+                  החברים הלא-ארסיים של האדם
+                </h3>
+              </div>
 
-            {/* Interactive display controls */}
-            <div className="flex gap-2 mb-4 bg-zinc-100 dark:bg-zinc-800 p-0.5 rounded-lg border border-zinc-200 dark:border-zinc-700 w-fit">
-              <button
-                onClick={() => setLookalikeView("side-by-side")}
-                className={`px-3 py-1 rounded-md text-xs font-bold transition-all ${
-                  lookalikeView === "side-by-side"
-                    ? "bg-white dark:bg-zinc-700 text-emerald-600 dark:text-emerald-400 shadow-sm"
-                    : "text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
-                }`}
-              >
-                השוואת כפילים: צפע מול זעמן מטבעות
-              </button>
-              <button
-                onClick={() => setLookalikeView("nummifer")}
-                className={`px-3 py-1 rounded-md text-xs font-bold transition-all ${
-                  lookalikeView === "nummifer"
-                    ? "bg-white dark:bg-zinc-700 text-emerald-600 dark:text-emerald-400 shadow-sm"
-                    : "text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
-                }`}
-              >
-                זעמן מטבעות
-              </button>
-              <button
-                onClick={() => setLookalikeView("jugularis")}
-                className={`px-3 py-1 rounded-md text-xs font-bold transition-all ${
-                  lookalikeView === "jugularis"
-                    ? "bg-white dark:bg-zinc-700 text-emerald-600 dark:text-emerald-400 shadow-sm"
-                    : "text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
-                }`}
-              >
-                זעמן שחור
-              </button>
+              {/* Interactive display controls */}
+              <div className="flex gap-2 bg-zinc-100 dark:bg-zinc-800 p-0.5 rounded-lg border border-zinc-200 dark:border-zinc-700 w-fit">
+                <button
+                  onClick={() => { setLookalikeView("side-by-side"); playSound("click"); }}
+                  className={`px-3 py-1 rounded-md text-xs font-bold transition-all cursor-pointer ${
+                    lookalikeView === "side-by-side"
+                      ? "bg-white dark:bg-zinc-700 text-emerald-600 dark:text-emerald-400 shadow-sm"
+                      : "text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-350"
+                  }`}
+                >
+                  השוואת כפילים: צפע מול זעמן מטבעות
+                </button>
+                <button
+                  onClick={() => { setLookalikeView("nummifer"); playSound("click"); }}
+                  className={`px-3 py-1 rounded-md text-xs font-bold transition-all cursor-pointer ${
+                    lookalikeView === "nummifer"
+                      ? "bg-white dark:bg-zinc-700 text-emerald-600 dark:text-emerald-400 shadow-sm"
+                      : "text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-350"
+                  }`}
+                >
+                  זעמן מטבעות
+                </button>
+                <button
+                  onClick={() => { setLookalikeView("jugularis"); playSound("click"); }}
+                  className={`px-3 py-1 rounded-md text-xs font-bold transition-all cursor-pointer ${
+                    lookalikeView === "jugularis"
+                      ? "bg-white dark:bg-zinc-700 text-emerald-600 dark:text-emerald-400 shadow-sm"
+                      : "text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-350"
+                  }`}
+                >
+                  זעמן שחור
+                </button>
+              </div>
             </div>
 
             {/* Content view */}
-            <div className="flex-1 flex flex-col justify-center">
+            <div className="flex-1 flex flex-col justify-center mt-2">
               {lookalikeView === "side-by-side" && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                  <div className="space-y-4">
-                    <h4 className="text-base font-bold text-zinc-900 dark:text-zinc-200 flex items-center gap-2">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center flex-1">
+                  <div className="md:col-span-7 space-y-4">
+                    <h4 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-200 flex items-center gap-2">
                       🔍 הטועה הגדול: איך מבדילים ביניהם?
                     </h4>
-                    <p className="text-xs text-zinc-600 dark:text-zinc-350 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-semibold">
                       זעמן המטבעות הוא נחש לא-ארסי המבצע <strong>חיקוי בייטסיאני</strong>: הוא פיתח דוגמת גב המזכירה את הצפע על מנת להטעות טורפים. בגלל המראה שלו, בני אדם רבים מתבלבלים בינו לבין הצפע והורגים אותו לשווא.
                     </p>
                     
-                    <div className="bg-zinc-50 dark:bg-zinc-800 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 space-y-2">
-                      <div className="flex justify-between items-center text-xs font-bold border-b border-zinc-200 dark:border-zinc-750 pb-1.5 mb-1.5">
-                        <span className="text-rose-500">צפע מצוי (💀 ארסי)</span>
-                        <span className="text-emerald-500">זעמן מטבעות (🌿 לא ארסי)</span>
+                    <div className="bg-zinc-50 dark:bg-zinc-800 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 space-y-2.5 shadow-sm">
+                      <div className="flex justify-between items-center text-xs sm:text-sm font-extrabold border-b border-zinc-200 dark:border-zinc-700 pb-1.5 mb-1.5">
+                        <span className="text-rose-600 dark:text-rose-400">צפע מצוי (💀 ארסי)</span>
+                        <span className="text-emerald-600 dark:text-emerald-400 font-extrabold">זעמן מטבעות (🌿 לא ארסי)</span>
                       </div>
-                      <div className="grid grid-cols-2 gap-4 text-[11px] sm:text-xs">
-                        <div className="space-y-1 text-rose-600 dark:text-rose-455">
+                      <div className="grid grid-cols-2 gap-4 text-xs sm:text-sm leading-relaxed font-semibold">
+                        <div className="space-y-1 text-rose-600 dark:text-rose-400">
                           <div>• <strong>זיגזג רציף:</strong> פס גב גלי מחובר לחלוטין.</div>
                           <div>• <strong>ראש משולש רחב:</strong> בצורת לב.</div>
                           <div>• <strong>גוף חסון:</strong> קצר ועבה יותר.</div>
                         </div>
-                        <div className="space-y-1 text-emerald-600 dark:text-emerald-455">
+                        <div className="space-y-1 text-emerald-600 dark:text-emerald-400">
                           <div>• <strong>מטבעות נפרדים:</strong> עיגולים כהים ומנותקים.</div>
                           <div>• <strong>ראש מעוגל:</strong> אליפטי ועדין.</div>
                           <div>• <strong>גוף דק:</strong> זריז וארוך.</div>
@@ -1004,82 +1013,88 @@ export default function Presentation() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="md:col-span-5 grid grid-cols-2 gap-3.5">
                     <div 
                       onClick={() => setLightboxImage(IMAGES.daboia)}
-                      className="border border-rose-200 dark:border-rose-900/35 rounded-xl overflow-hidden bg-white dark:bg-zinc-900 flex flex-col cursor-zoom-in group"
+                      className="border border-rose-200 dark:border-rose-900/35 rounded-xl overflow-hidden bg-white dark:bg-zinc-900 flex flex-col cursor-zoom-in group shadow-sm"
                       title="לחץ להגדלה"
                     >
-                      <img src={IMAGES.daboia.url} alt="צפע" className="h-32 w-full object-contain bg-zinc-50 dark:bg-zinc-950 transition-transform duration-500 group-hover:scale-105" />
-                      <div className="p-2 text-center text-xs font-bold text-rose-600 bg-rose-500/10">צפע (פס זיגזג רציף)</div>
+                      <img src={IMAGES.daboia.url} alt="צפע" className="h-40 w-full object-contain bg-zinc-50 dark:bg-zinc-950 transition-transform duration-500 group-hover:scale-105" />
+                      <div className="p-2 text-center text-xs font-extrabold text-rose-600 dark:text-rose-400 bg-rose-500/10">צפע (פס זיגזג רציף)</div>
                     </div>
                     <div 
                       onClick={() => setLightboxImage(IMAGES.nummifer)}
-                      className="border border-emerald-200 dark:border-emerald-900/35 rounded-xl overflow-hidden bg-white dark:bg-zinc-900 flex flex-col cursor-zoom-in group"
+                      className="border border-emerald-200 dark:border-emerald-900/35 rounded-xl overflow-hidden bg-white dark:bg-zinc-900 flex flex-col cursor-zoom-in group shadow-sm"
                       title="לחץ להגדלה"
                     >
-                      <img src={IMAGES.nummifer.url} alt="זעמן מטבעות" className="h-32 w-full object-contain bg-zinc-50 dark:bg-zinc-950 transition-transform duration-500 group-hover:scale-105" />
-                      <div className="p-2 text-center text-xs font-bold text-emerald-600 bg-emerald-500/10">זעמן מטבעות (עיגולים מופרדים)</div>
+                      <img src={IMAGES.nummifer.url} alt="זעמן מטבעות" className="h-40 w-full object-contain bg-zinc-50 dark:bg-zinc-955 transition-transform duration-500 group-hover:scale-105" />
+                      <div className="p-2 text-center text-xs font-extrabold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10">זעמן מטבעות</div>
                     </div>
                   </div>
                 </div>
               )}
 
               {lookalikeView === "nummifer" && (
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-                  <div className="md:col-span-7 space-y-3">
-                    <h4 className="text-xl font-bold text-emerald-600 dark:text-emerald-450">זעמן מטבעות – מגן הבית</h4>
-                    <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-350 leading-relaxed">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center flex-1">
+                  <div className="md:col-span-7 space-y-4">
+                    <h4 className="text-lg sm:text-xl font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
+                      🐍 זעמן מטבעות <span className="text-xs text-emerald-500 bg-emerald-500/10 px-2 rounded-full font-bold">מגן הבית ושכן מועיל</span>
+                    </h4>
+                    <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed font-semibold">
                       זעמן המטבעות הוא נחש פעיל יום זריז. הוא אינו ארסי ואינו מהווה סכנה לאדם (אם כי הוא עלול לנשוך אם מציקים לו).
                     </p>
-                    <div className="bg-emerald-500/5 dark:bg-emerald-950/10 border border-emerald-500/15 p-3 rounded-lg text-xs space-y-1.5">
-                      <div className="font-bold text-emerald-700 dark:text-emerald-350 flex items-center gap-1.5">
-                        <Shield className="h-4 w-4" />
+                    <div className="bg-emerald-500/5 dark:bg-emerald-950/10 border border-emerald-500/15 p-4 rounded-xl text-xs sm:text-sm space-y-2 shadow-sm font-semibold">
+                      <div className="font-extrabold text-emerald-700 dark:text-emerald-300 flex items-center gap-1.5 text-sm sm:text-base">
+                        <Shield className="h-5 w-5" />
                         למה הוא חבר יקר?
                       </div>
-                      <p className="text-zinc-650 dark:text-zinc-350 leading-relaxed">
+                      <p className="text-zinc-650 dark:text-zinc-350 leading-relaxed font-medium">
                         הוא מתחרה ישיר עם הצפע על טריטוריה. הימצאות של זעמן מטבעות בגינה מקטינה משמעותית את הסיכוי שצפע יתנחל בה! בנוסף, זעמן המטבעות טורף נחשים אחרים – כולל צפעים צעירים.
                       </p>
                     </div>
                   </div>
                   <div 
                     onClick={() => setLightboxImage(IMAGES.nummifer)}
-                    className="md:col-span-5 relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-video md:aspect-[4/3] max-h-[190px] w-full flex bg-zinc-100 dark:bg-zinc-900 cursor-zoom-in"
+                    className="md:col-span-5 relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-[4/3] max-h-[255px] w-full flex bg-zinc-100 dark:bg-zinc-900 cursor-zoom-in shadow-sm"
                     title="לחץ להגדלה"
                   >
                     <img src={IMAGES.nummifer.url} alt={IMAGES.nummifer.commonName} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
-                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-zinc-950/80 to-transparent p-2.5 text-white text-[10px]">
+                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-zinc-950/80 to-transparent p-3 text-white text-[10px] flex justify-between w-full">
                       <span>צילום: ויקישיתוף</span>
+                      <span className="bg-emerald-500/90 text-white font-bold px-1 rounded font-sans">זעמן מטבעות</span>
                     </div>
                   </div>
                 </div>
               )}
 
               {lookalikeView === "jugularis" && (
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-                  <div className="md:col-span-7 space-y-3">
-                    <h4 className="text-xl font-bold text-emerald-600 dark:text-emerald-450">זעמן שחור – ענק הגינות הידידותי</h4>
-                    <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-350 leading-relaxed">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center flex-1">
+                  <div className="md:col-span-7 space-y-4">
+                    <h4 className="text-lg sm:text-xl font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
+                      🐍 זעמן שחור <span className="text-xs text-emerald-500 bg-emerald-500/10 px-2 rounded-full font-bold">ענק הגינות הידידותי</span>
+                    </h4>
+                    <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed font-semibold">
                       נחש ארוך במיוחד (יכול לעבור 2 מטרים ואף להגיע ל-2.5 מטרים!). הוא מהיר להפליא, פעיל יום, וצבעו של בוגר שחור אחיד, מבריק ומרהיב.
                     </p>
-                    <div className="bg-emerald-500/5 dark:bg-emerald-950/10 border border-emerald-500/15 p-3 rounded-lg text-xs space-y-1.5">
-                      <div className="font-bold text-emerald-700 dark:text-emerald-350 flex items-center gap-1.5">
-                        <Sparkles className="h-4 w-4" />
+                    <div className="bg-emerald-500/5 dark:bg-emerald-950/10 border border-emerald-500/15 p-4 rounded-xl text-xs sm:text-sm space-y-2 shadow-sm font-semibold">
+                      <div className="font-extrabold text-emerald-700 dark:text-emerald-300 flex items-center gap-1.5 text-sm sm:text-base">
+                        <Sparkles className="h-5 w-5" />
                         נכס עצום לחקלאים ולגינות
                       </div>
-                      <p className="text-zinc-650 dark:text-zinc-350 leading-relaxed">
+                      <p className="text-zinc-650 dark:text-zinc-350 leading-relaxed font-medium">
                         זעמן שחור ניזון בעיקר ממכרסמים (עכברים וחולדות). נחש אחד בגינה מבצע עבודה יעילה יותר מכל רעל או מלכודת. בנוסף, הוא אינו ארסי לחלוטין. הוא פחדן ויעדיף תמיד להימלט מאשר להתמודד עם אדם.
                       </p>
                     </div>
                   </div>
                   <div 
                     onClick={() => setLightboxImage(IMAGES.jugularis)}
-                    className="md:col-span-5 relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-video md:aspect-[4/3] max-h-[190px] w-full flex bg-zinc-100 dark:bg-zinc-900 cursor-zoom-in"
+                    className="md:col-span-5 relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-[4/3] max-h-[255px] w-full flex bg-zinc-100 dark:bg-zinc-900 cursor-zoom-in shadow-sm"
                     title="לחץ להגדלה"
                   >
                     <img src={IMAGES.jugularis.url} alt={IMAGES.jugularis.commonName} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
-                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-zinc-950/80 to-transparent p-2.5 text-white text-[10px]">
+                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-zinc-950/80 to-transparent p-3 text-white text-[10px] flex justify-between w-full">
                       <span>צילום: ויקישיתוף</span>
+                      <span className="bg-emerald-500/90 text-white font-bold px-1 rounded font-sans">זעמן שחור</span>
                     </div>
                   </div>
                 </div>
@@ -1089,45 +1104,52 @@ export default function Presentation() {
         );
       case 5:
         return (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-            <div className="space-y-4">
-              <span className="text-xs font-bold text-emerald-500 uppercase tracking-widest bg-emerald-500/10 px-2.5 py-1 rounded">
-                החשיבות האקולוגית של הנחש
-              </span>
-              <h3 className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-50">
-                למה אנחנו חייבים את הנחשים בטבע?
-              </h3>
-              <p className="text-sm text-zinc-600 dark:text-zinc-350 leading-relaxed">
-                הנחשים סובלים מיחסי ציבור גרועים ומרתע עמוק בגלל פחד היסטורי, אך הם מהווים נדבך קריטי לשמירה על הטבע בישראל.
-              </p>
-              
-              <div className="bg-emerald-500/10 dark:bg-emerald-950/20 border border-emerald-500/30 rounded-xl p-4 flex gap-3">
-                <Shield className="h-6 w-6 text-emerald-500 shrink-0 mt-0.5" />
-                <div className="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
-                  <strong>חוק הגנת הטבע:</strong> כל הנחשים בישראל הם חיות בר מוגנות. אסור לפגוע בהם, להרוג אותם, לצוד אותם או לגדל אותם ללא היתר מיוחד מרשות הטבע והגנים.
-                </div>
+          <div className="flex flex-col flex-1 h-full justify-between gap-4">
+            <div>
+              <div className="mb-2">
+                <span className="text-xs font-bold text-emerald-500 uppercase tracking-widest bg-emerald-500/10 px-2.5 py-1 rounded">
+                  החשיבות האקולוגית של הנחש
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-zinc-50 mt-1">
+                  למה אנחנו חייבים את הנחשים בטבע?
+                </h3>
               </div>
             </div>
 
-            {/* Ecological Cards Grid */}
-            <div className="grid grid-cols-1 gap-3.5">
-              <div className="p-4 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-800 flex items-start gap-3.5">
-                <div className="p-2 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold text-xs shrink-0">01</div>
-                <div>
-                  <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 mb-0.5">מדבירים ביולוגיים יעילים</h4>
-                  <p className="text-[11px] sm:text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                    ללא נחשים, אוכלוסיות המכרסמים (עכברים וחולדות) היו מתרבות ללא בקרה. המכרסמים היו הורסים יבולים חקלאיים ומפיצים מחלות קשות לבני אדם.
-                  </p>
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center flex-1 mt-2">
+              <div className="md:col-span-6 space-y-4">
+                <p className="text-sm sm:text-base text-zinc-650 dark:text-zinc-300 leading-relaxed font-semibold">
+                  הנחשים סובלים מיחסי ציבור גרועים ומרתע עמוק בגלל פחד היסטורי, אך הם מהווים נדבך קריטי לשמירה על הטבע בישראל.
+                </p>
+                
+                <div className="bg-emerald-500/10 dark:bg-emerald-950/20 border border-emerald-500/30 rounded-xl p-5 flex gap-3.5 shadow-sm">
+                  <Shield className="h-6 w-6 text-emerald-500 shrink-0 mt-0.5" />
+                  <div className="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-semibold">
+                    <strong>חוק הגנת הטבע:</strong> כל הנחשים בישראל הם חיות בר מוגנות. אסור לפגוע בהם, להרוג אותם, לצוד אותם או לגדל אותם ללא היתר מיוחד מרשות הטבע והגנים.
+                  </div>
                 </div>
               </div>
 
-              <div className="p-4 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-800 flex items-start gap-3.5">
-                <div className="p-2 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold text-xs shrink-0">02</div>
-                <div>
-                  <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 mb-0.5">חוליה קריטית בשרשרת המזון</h4>
-                  <p className="text-[11px] sm:text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                    הנחשים משמשים גם כטורפים וגם כנטרפים. הם מווסתים את אוכלוסיות הטרף שלהם, ומהווים מזון הכרחי לדורסי לילה, חיוויאים (עיטי נחשים) ונמיות.
-                  </p>
+              {/* Ecological Cards Grid */}
+              <div className="md:col-span-6 grid grid-cols-1 gap-4">
+                <div className="p-5 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-800 flex items-start gap-4 shadow-sm">
+                  <div className="p-2.5 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-extrabold text-sm shrink-0">01</div>
+                  <div>
+                    <h4 className="text-base font-extrabold text-zinc-900 dark:text-zinc-100 mb-1">מדבירים ביולוגיים יעילים</h4>
+                    <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">
+                      ללא נחשים, אוכלוסיות המכרסמים (עכברים וחולדות) היו מתרבות ללא בקרה. המכרסמים היו הורסים יבולים חקלאיים ומפיצים מחלות קשות לבני אדם.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-5 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-800 flex items-start gap-4 shadow-sm">
+                  <div className="p-2.5 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-extrabold text-sm shrink-0">02</div>
+                  <div>
+                    <h4 className="text-base font-extrabold text-zinc-900 dark:text-zinc-100 mb-1">חוליה קריטית בשרשרת המזון</h4>
+                    <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">
+                      הנחשים משמשים גם כטורפים וגם כנטרפים. הם מווסתים את אוכלוסיות הטרף שלהם, ומהווים מזון הכרחי לדורסי לילה, חיוויאים (עיטי נחשים) ונמיות.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1135,48 +1157,55 @@ export default function Presentation() {
         );
       case 6:
         return (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-            <div className="lg:col-span-7 space-y-4">
-              <span className="text-xs font-bold text-emerald-500 uppercase tracking-widest bg-emerald-500/10 px-2.5 py-1 rounded">
-                בטיחות קודמת לכל
-              </span>
-              <h3 className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-50">
-                פגשנו נחש – מה עושים בפועל?
-              </h3>
-              <p className="text-sm text-zinc-650 dark:text-zinc-350 leading-relaxed">
-                מפגש עם נחש יכול להיות מלחיץ, אך פעולה לפי כללים פשוטים תבטיח שאף אחד – לא אתם ולא הנחש – ייפגע.
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                {[
-                  { title: "📏 שומרים על מרחק בטוח", text: "נחשים לא תוקפים סתם. מרחק של 2-3 מטרים מונע לחלוטין את טווח ההכשה של הנחש." },
-                  { title: "🚫 לא נוגעים ולא מנסים לתפוס", text: "הניסיון לתפוס או להרוג נחש הוא הגורם הראשי להכשות. שרף עין גדי מוכיח שסימני הזיהוי עלולים להטעות!" },
-                  { title: "📞 קוראים ללוכד מוסמך", text: "אם הנחש נמצא בחצר בית או בבית הספר, יש להתרחק ולקרוא מיד ללוכד נחשים מורשה מטעם רט\"ג." },
-                  { title: "🥾 בטיחות בטיולים וביציאה לטבע", text: "הולכים בשבילים מסומנים, נועלים נעליים סגורות, ולא מכניסים ידיים למחילות או מתחת לאבנים בלי להסתכל." }
-                ].map((item, idx) => (
-                  <div key={idx} className="p-3 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-800 space-y-1">
-                    <h4 className="text-xs sm:text-sm font-bold text-emerald-600 dark:text-emerald-400">{item.title}</h4>
-                    <p className="text-[10px] sm:text-xs text-zinc-500 dark:text-zinc-450 leading-relaxed">{item.text}</p>
-                  </div>
-                ))}
+          <div className="flex flex-col flex-1 h-full justify-between gap-4">
+            <div>
+              <div className="mb-2">
+                <span className="text-xs font-bold text-emerald-500 uppercase tracking-widest bg-emerald-500/10 px-2.5 py-1 rounded">
+                  בטיחות קודמת לכל
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-zinc-50 mt-1">
+                  פגשנו נחש – מה עושים בפועל?
+                </h3>
               </div>
             </div>
 
-            {/* visual callout box */}
-            <div className="lg:col-span-5 bg-zinc-900 text-white rounded-2xl p-6 border border-zinc-800 flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute inset-0 bg-emerald-500/[0.03] pointer-events-none" />
-              <div className="space-y-4">
-                <div className="flex items-center gap-2 text-rose-500 font-bold text-xs uppercase tracking-widest">
-                  <AlertTriangle className="h-4 w-4 animate-pulse" />
-                  שקשוק ואזהרה
-                </div>
-                <h4 className="text-lg font-black leading-tight">נחש מנסה להרחיק אתכם!</h4>
-                <p className="text-xs text-zinc-400 leading-relaxed">
-                  כאשר נחש מרגיש מאוים, הוא ינסה להזהיר אתכם לפני שיפעל. צפע מצוי ישמיע <strong>נשיפה רועשת</strong> של אוויר. אפעה מגוון ישפשף קשקשים ויוצר קול רשרוש.
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch flex-1 mt-2">
+              <div className="lg:col-span-7 space-y-4 flex flex-col justify-between">
+                <p className="text-sm sm:text-base text-zinc-650 dark:text-zinc-300 leading-relaxed font-semibold">
+                  מפגש עם נחש יכול להיות מלחיץ, אך פעולה לפי כללים פשוטים תבטיח שאף אחד – לא אתם ולא הנחש – ייפגע.
                 </p>
-                <div className="p-3 bg-zinc-800/80 rounded-xl border border-zinc-700/60 text-[11px] text-zinc-300 leading-relaxed">
-                  <strong>מה לעשות כששומעים נשיפה או רשרוש?</strong>
-                  <br />קפאו מיד במקום! חפשו בעיניים מהיכן מגיע הקול, ונסוגו באיטיות רבה לכיוון הנגדי. אל תרוצו ואל תזרקו עליו דבר.
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                  {[
+                    { title: "📏 שומרים על מרחק בטוח", text: "נחשים לא תוקפים סתם. מרחק של 2-3 מטרים מונע לחלוטין את טווח ההכשה של הנחש." },
+                    { title: "🚫 לא נוגעים ולא מנסים לתפוס", text: "הניסיון לתפוס או להרוג נחש הוא הגורם הראשי להכשות. שרף עין גדי מוכיח שסימני הזיהוי עלולים להטעות!" },
+                    { title: "📞 קוראים ללוכד מוסמך", text: "אם הנחש נמצא בחצר בית או בבית הספר, יש להתרחק ולקרוא מיד ללוכד נחשים מורשה מטעם רט\"ג." },
+                    { title: "🥾 בטיחות בטיולים וביציאה לטבע", text: "הולכים בשבילים מסומנים, נועלים נעליים סגורות, ולא מכניסים ידיים למחילות או מתחת לאבנים בלי להסתכל." }
+                  ].map((item, idx) => (
+                    <div key={idx} className="p-3.5 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-800 space-y-1.5 shadow-sm">
+                      <h4 className="text-xs sm:text-sm font-extrabold text-emerald-600 dark:text-emerald-400">{item.title}</h4>
+                      <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">{item.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* visual callout box */}
+              <div className="lg:col-span-5 bg-zinc-900 text-white rounded-2xl p-6 border border-zinc-800 flex flex-col justify-between relative overflow-hidden shadow-md">
+                <div className="absolute inset-0 bg-emerald-500/[0.03] pointer-events-none" />
+                <div className="space-y-4 flex-1 flex flex-col justify-between">
+                  <div className="flex items-center gap-2 text-rose-500 font-extrabold text-xs sm:text-sm uppercase tracking-widest">
+                    <AlertTriangle className="h-4 w-4 animate-pulse" />
+                    שקשוק ואזהרה
+                  </div>
+                  <h4 className="text-lg sm:text-xl font-black leading-tight text-white">נחש מנסה להרחיק אתכם!</h4>
+                  <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed font-medium">
+                    כאשר נחש מרגיש מאוים, הוא ינסה להזהיר אתכם לפני שיפעל. צפע מצוי ישמיע <strong>נשיפה רועשת</strong> של אוויר. אפעה מגוון ישפשף קשקשים ויוצר קול רשרוש.
+                  </p>
+                  <div className="p-4 bg-zinc-800/80 rounded-xl border border-zinc-700/60 text-xs sm:text-sm text-zinc-300 leading-relaxed mt-auto">
+                    <strong>מה לעשות כששומעים נשיפה או רשרוש?</strong>
+                    <br />קפאו מיד במקום! חפשו בעיניים מהיכן מגיע הקול, ונסוגו באיטיות רבה לכיוון הנגדי. אל תרוצו ואל תזרקו עליו דבר.
+                  </div>
                 </div>
               </div>
             </div>
@@ -1184,9 +1213,9 @@ export default function Presentation() {
         );
       case 7:
         return (
-          <div className="flex flex-col flex-1 justify-between">
+          <div className="flex flex-col flex-1 h-full justify-between gap-4">
             {/* Quiz header */}
-            <div className="mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-200 dark:border-zinc-800">
+            <div className="mb-2 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-200 dark:border-zinc-800">
               <div>
                 <span className="text-xs font-bold text-emerald-500 bg-emerald-500/10 px-2.5 py-1 rounded">
                   סיכום ובוחן פתע קליל
@@ -1197,22 +1226,22 @@ export default function Presentation() {
               </div>
               
               {!quizSubmitted && (
-                <div className="text-xs text-zinc-500 dark:text-zinc-450 font-bold bg-zinc-100 dark:bg-zinc-800 px-3 py-1 rounded-full">
+                <div className="text-xs text-zinc-500 dark:text-zinc-400 font-bold bg-zinc-100 dark:bg-zinc-800 px-3 py-1 rounded-full">
                   שאלה {activeQuestion + 1} מתוך {QUIZ_QUESTIONS.length}
                 </div>
               )}
             </div>
 
             {/* Quiz main panel */}
-            <div className="flex-1 flex flex-col justify-center">
+            <div className="flex-1 flex flex-col justify-center mt-2">
               {!quizSubmitted ? (
                 /* Question card */
-                <div className="space-y-4">
-                  <div className="text-base sm:text-lg font-bold text-zinc-800 dark:text-zinc-100 bg-emerald-500/[0.02] border border-emerald-500/10 p-4 rounded-xl">
+                <div className="space-y-5">
+                  <div className="text-lg sm:text-xl font-bold text-zinc-800 dark:text-zinc-100 bg-emerald-500/[0.02] border border-emerald-500/10 p-5 rounded-xl shadow-sm leading-relaxed">
                     {QUIZ_QUESTIONS[activeQuestion].question}
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                     {QUIZ_QUESTIONS[activeQuestion].options.map((opt, optIdx) => {
                       const isSelected = quizAnswers[activeQuestion] === optIdx;
                       return (
@@ -1222,13 +1251,13 @@ export default function Presentation() {
                             setQuizAnswers({ ...quizAnswers, [activeQuestion]: optIdx });
                             playSound("click");
                           }}
-                          className={`w-full text-right p-4 rounded-xl border text-xs sm:text-sm font-semibold transition-all ${
+                          className={`w-full text-right p-4 rounded-xl border text-sm sm:text-base font-semibold transition-all cursor-pointer shadow-sm ${
                             isSelected
                               ? "bg-emerald-500/10 border-emerald-500 text-emerald-700 dark:text-emerald-300 ring-2 ring-emerald-500/20"
                               : "bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700"
                           }`}
                         >
-                          <span className="ml-2 bg-zinc-100 dark:bg-zinc-800 text-zinc-650 dark:text-zinc-400 px-2 py-0.5 rounded-md font-black text-xs">
+                          <span className="ml-2 bg-zinc-100 dark:bg-zinc-800 text-zinc-650 dark:text-zinc-400 px-2.5 py-1 rounded-md font-black text-sm">
                             {String.fromCharCode(1504 + optIdx)} {/* Hebrew letters: א, ב, ג, ד */}
                           </span>
                           {opt}
@@ -1238,7 +1267,7 @@ export default function Presentation() {
                   </div>
 
                   {/* Navigation within quiz */}
-                  <div className="flex justify-between items-center pt-3">
+                  <div className="flex justify-between items-center pt-4 border-t border-zinc-100 dark:border-zinc-800 mt-2">
                     <button
                       onClick={() => {
                         if (activeQuestion > 0) {
@@ -1247,7 +1276,7 @@ export default function Presentation() {
                         }
                       }}
                       disabled={activeQuestion === 0}
-                      className={`text-xs font-bold px-3 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 ${
+                      className={`text-xs sm:text-sm font-bold px-4 py-2 rounded-lg border border-zinc-200 dark:border-zinc-800 cursor-pointer ${
                         activeQuestion === 0 ? "opacity-30 cursor-not-allowed" : "hover:bg-zinc-50 dark:hover:bg-zinc-800"
                       }`}
                     >
@@ -1264,7 +1293,7 @@ export default function Presentation() {
                             alert("אנא בחרו תשובה לפני שתמשיכו!");
                           }
                         }}
-                        className={`text-xs font-bold bg-emerald-555 text-white px-4 py-2 rounded-lg hover:bg-emerald-600 shadow transition-all ${
+                        className={`text-xs sm:text-sm font-bold bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-750 shadow transition-all cursor-pointer ${
                           quizAnswers[activeQuestion] === undefined ? "opacity-50 cursor-not-allowed" : ""
                         }`}
                         disabled={quizAnswers[activeQuestion] === undefined}
@@ -1284,7 +1313,7 @@ export default function Presentation() {
                             alert("אנא ענו על כל השאלות לפני ההגשה!");
                           }
                         }}
-                        className={`text-xs font-bold bg-emerald-600 text-white px-5 py-2.5 rounded-lg hover:bg-emerald-700 shadow-md transition-all ${
+                        className={`text-xs sm:text-sm font-bold bg-emerald-600 text-white px-5 py-2.5 rounded-lg hover:bg-emerald-700 shadow-md transition-all cursor-pointer ${
                           Object.keys(quizAnswers).length !== QUIZ_QUESTIONS.length ? "opacity-50 cursor-not-allowed" : ""
                         }`}
                         disabled={Object.keys(quizAnswers).length !== QUIZ_QUESTIONS.length}
@@ -1296,25 +1325,25 @@ export default function Presentation() {
                 </div>
               ) : (
                 /* Quiz Summary Results */
-                <div className="space-y-4 text-center">
+                <div className="space-y-4 text-center max-w-xl mx-auto w-full">
                   <div className="flex justify-center mb-1">
                     <div className="p-4 rounded-full bg-emerald-500/10 text-emerald-500 shadow-inner">
                       <Award className="h-12 w-12" />
                     </div>
                   </div>
-                  <h4 className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-zinc-100">
+                  <h4 className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-zinc-50">
                     {quizScore === QUIZ_QUESTIONS.length
                       ? "כל הכבוד! ציון מושלם! 🎉"
                       : quizScore >= QUIZ_QUESTIONS.length / 2
                       ? "עבודה יפה! עברתם את הבוחן בהצלחה!"
                       : "מומלץ לחזור על החומר שוב."}
                   </h4>
-                  <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                  <p className="text-sm sm:text-base text-zinc-550 dark:text-zinc-350 font-extrabold">
                     עניתם נכון על <strong>{quizScore}</strong> שאלות מתוך <strong>{QUIZ_QUESTIONS.length}</strong>.
                   </p>
                   
                   {/* Visual progress score bar */}
-                  <div className="w-full max-w-md mx-auto bg-zinc-200 dark:bg-zinc-800 h-3 rounded-full overflow-hidden mb-4 border border-zinc-300 dark:border-zinc-750">
+                  <div className="w-full max-w-md mx-auto bg-zinc-200 dark:bg-zinc-800 h-3.5 rounded-full overflow-hidden mb-4 border border-zinc-300 dark:border-zinc-700 shadow-inner">
                     <div
                       className={`h-full rounded-full transition-all duration-1000 ${
                         quizScore === QUIZ_QUESTIONS.length ? "bg-emerald-500" : quizScore >= 2 ? "bg-amber-500" : "bg-red-500"
@@ -1324,16 +1353,16 @@ export default function Presentation() {
                   </div>
 
                   {/* Review answers collapse panels */}
-                  <div className="text-right max-h-40 overflow-y-auto space-y-2 border border-zinc-200 dark:border-zinc-800 rounded-xl p-3 bg-zinc-50 dark:bg-zinc-900">
+                  <div className="text-right max-h-48 overflow-y-auto space-y-2.5 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 bg-zinc-50 dark:bg-zinc-900 shadow-inner">
                     {QUIZ_QUESTIONS.map((q, idx) => {
                       const isCorrect = quizAnswers[idx] === q.correctAnswer;
                       return (
-                        <div key={idx} className="p-2 border-b border-zinc-200 dark:border-zinc-800 last:border-b-0 text-xs">
-                          <div className="font-bold flex items-center gap-1.5 mb-1 text-zinc-800 dark:text-zinc-200">
-                            {isCorrect ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <X className="h-3.5 w-3.5 text-red-500" />}
+                        <div key={idx} className="p-2.5 border-b border-zinc-150 dark:border-zinc-800 last:border-b-0 text-xs sm:text-sm">
+                          <div className="font-extrabold flex items-center gap-1.5 mb-1 text-zinc-800 dark:text-zinc-200">
+                            {isCorrect ? <Check className="h-4 w-4 text-emerald-500" /> : <X className="h-4 w-4 text-red-500" />}
                             <span>שאלה {idx + 1}: {isCorrect ? "נכון" : "שגוי"}</span>
                           </div>
-                          <p className="text-zinc-500 dark:text-zinc-400 italic font-medium leading-relaxed">
+                          <p className="text-zinc-500 dark:text-zinc-400 italic font-semibold leading-relaxed">
                             {q.explanation}
                           </p>
                         </div>
@@ -1343,7 +1372,7 @@ export default function Presentation() {
 
                   <button
                     onClick={resetQuiz}
-                    className="mt-2 text-xs font-bold text-emerald-650 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-4 py-2 rounded-xl hover:bg-emerald-500/20 transition-all"
+                    className="mt-2 text-sm font-bold text-emerald-600 dark:text-emerald-455 bg-emerald-500/10 border border-emerald-500/20 px-5 py-2.5 rounded-xl hover:bg-emerald-500/20 transition-all cursor-pointer shadow-sm"
                   >
                     נסו שוב 🔄
                   </button>
