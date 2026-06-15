@@ -850,70 +850,77 @@ export default function Presentation() {
         );
       case 3:
         return (
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-            <div className="md:col-span-7 space-y-4">
+          <div className="flex flex-col flex-1 h-full justify-between gap-4">
+            <div>
               <div className="inline-flex items-center gap-1.5 text-xs font-bold text-red-500 bg-red-500/10 border border-red-500/20 px-2.5 py-1 rounded-full uppercase tracking-wider animate-pulse">
                 <AlertTriangle className="h-3.5 w-3.5" />
                 הארסי ביותר בישראל!
               </div>
-              <h3 className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-50">
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-zinc-50 mt-1">
                 שרף עין גדי – "היוצא מן הכלל" הקטלני
               </h3>
-              <p className="text-sm text-zinc-600 dark:text-zinc-350 leading-relaxed font-medium">
-                שרף עין גדי (מכונה גם צפעון שחור) שובר את כל חוקי האצבע המסורתיים לזיהוי נחשים ארסיים, ולכן הוא מסוכן שבעתיים.
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="p-3 bg-red-500/5 dark:bg-red-950/10 border border-red-500/10 dark:border-red-900/20 rounded-xl space-y-1">
-                  <div className="text-xs font-bold text-red-650 dark:text-red-400">🕵️ מראה מטעה</div>
-                  <div className="text-[11px] sm:text-xs text-zinc-650 dark:text-zinc-300">
-                    גוף דק, ראש קטן ומעוגל שאינו משולש. צבעו שחור מבריק ואחיד. נראה בדיוק כמו <strong>זעמן שחור צעיר</strong> (שאינו ארסי).
-                  </div>
-                </div>
-                <div className="p-3 bg-red-500/5 dark:bg-red-950/10 border border-red-500/10 dark:border-red-900/20 rounded-xl space-y-1">
-                  <div className="text-xs font-bold text-red-650 dark:text-red-400">⚔️ הכשה הצידה</div>
-                  <div className="text-[11px] sm:text-xs text-zinc-650 dark:text-zinc-300">
-                    שיני הארס פונות לאחור ויכולות לבלוט מצדי הפה. הוא אינו מכיש מקדימה, אלא דוקר הצידה או לאחור בתנועת נגיחה של הראש.
-                  </div>
-                </div>
-                <div className="p-3 bg-red-500/5 dark:bg-red-950/10 border border-red-500/10 dark:border-red-900/20 rounded-xl space-y-1">
-                  <div className="text-xs font-bold text-red-650 dark:text-red-400">🖐️ סכנת תפיסה</div>
-                  <div className="text-[11px] sm:text-xs text-zinc-650 dark:text-zinc-300">
-                    אסור בהחלט לתפוס אותו מאחורי הראש – הוא מסוגל לשלוף שן אחת הצידה ולהכיש את האצבע שמחזיקה אותו!
-                  </div>
-                </div>
-                <div className="p-3 bg-red-500/5 dark:bg-red-950/10 border border-red-500/10 dark:border-red-900/20 rounded-xl space-y-1">
-                  <div className="text-xs font-bold text-red-650 dark:text-red-400">❌ אין נוגדן (נסיוב)</div>
-                  <div className="text-[11px] sm:text-xs text-zinc-650 dark:text-zinc-300">
-                    בניגוד לצפע, לשרף עין גדי <strong>אין נסיוב רפואי</strong>. הטיפול בבית החולים מבוסס על תמיכה רפואית בלבד.
-                  </div>
-                </div>
-              </div>
             </div>
 
-            {/* Photo & Distribution */}
-            <div className="md:col-span-5 flex flex-col gap-3">
-              <div 
-                onClick={() => setLightboxImage(IMAGES.atractaspis)}
-                className="relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-video md:aspect-[4/3] max-h-[190px] w-full flex bg-zinc-100 dark:bg-zinc-900 cursor-zoom-in"
-                title="לחץ להגדלה"
-              >
-                <img
-                  src={IMAGES.atractaspis.url}
-                  alt={IMAGES.atractaspis.commonName}
-                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute top-3 right-3 bg-black/70 text-red-400 border border-red-500/35 px-2 py-0.5 rounded text-[10px] font-bold">
-                  שרף עין גדי
+            {/* Main content grid */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center flex-1 mt-2">
+              {/* Photo & Distribution */}
+              <div className="md:col-span-5 flex flex-col gap-3">
+                <div 
+                  onClick={() => setLightboxImage(IMAGES.atractaspis)}
+                  className="relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-[4/3] max-h-[255px] w-full flex bg-zinc-100 dark:bg-zinc-900 cursor-zoom-in"
+                  title="לחץ להגדלה"
+                >
+                  <img
+                    src={IMAGES.atractaspis.url}
+                    alt={IMAGES.atractaspis.commonName}
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute top-3 right-3 bg-black/70 text-red-400 border border-red-500/35 px-2 py-0.5 rounded text-[10px] font-bold">
+                    שרף עין גדי
+                  </div>
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-zinc-950/80 to-transparent p-3 text-white text-[10px]">
+                    <span>צילום: {IMAGES.atractaspis.author}</span>
+                  </div>
                 </div>
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-zinc-950/80 to-transparent p-3 text-white text-[10px]">
-                  <span>צילום: {IMAGES.atractaspis.author}</span>
+                <div className="p-3 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-800">
+                  <div className="text-xs font-bold text-zinc-500 dark:text-zinc-400">📍 אזורי תפוצה בישראל</div>
+                  <div className="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 font-semibold mt-0.5">
+                    בקעת הירדן, אזור ים המלח (עין גדי – על שמו הוא נקרא) והערבה.
+                  </div>
                 </div>
               </div>
-              <div className="p-3 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-800">
-                <div className="text-[10px] font-bold text-zinc-500 dark:text-zinc-400">📍 אזורי תפוצה בישראל</div>
-                <div className="text-xs text-zinc-700 dark:text-zinc-300 font-semibold mt-0.5">
-                  בקעת הירדן, אזור ים המלח (עין גדי – על שמו הוא נקרא) והערבה.
+
+              {/* Text Cards */}
+              <div className="md:col-span-7 flex flex-col justify-center space-y-4">
+                <p className="text-xs sm:text-sm text-zinc-650 dark:text-zinc-350 leading-relaxed font-semibold">
+                  שרף עין גדי (מכונה גם צפעון שחור) שובר את כל חוקי האצבע המסורתיים לזיהוי נחשים ארסיים, ולכן הוא מסוכן שבעתיים:
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="p-3 bg-red-500/5 dark:bg-red-950/10 border border-red-500/10 dark:border-red-900/20 rounded-xl space-y-1.5">
+                    <div className="text-sm font-extrabold text-red-650 dark:text-red-400">🕵️ מראה מטעה</div>
+                    <div className="text-xs sm:text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
+                      גוף דק, ראש קטן ומעוגל שאינו משולש. צבעו שחור מבריק ואחיד. נראה בדיוק כמו <strong>זעמן שחור צעיר</strong> (שאינו ארסי).
+                    </div>
+                  </div>
+                  <div className="p-3 bg-red-500/5 dark:bg-red-950/10 border border-red-500/10 dark:border-red-900/20 rounded-xl space-y-1.5">
+                    <div className="text-sm font-extrabold text-red-650 dark:text-red-400">⚔️ הכשה הצידה</div>
+                    <div className="text-xs sm:text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
+                      שיני הארס פונות לאחור ויכולות לבלוט מצדי הפה. הוא אינו מכיש מקדימה, אלא דוקר הצידה או לאחור בתנועת נגיחה של הראש.
+                    </div>
+                  </div>
+                  <div className="p-3 bg-red-500/5 dark:bg-red-950/10 border border-red-500/10 dark:border-red-900/20 rounded-xl space-y-1.5">
+                    <div className="text-sm font-extrabold text-red-650 dark:text-red-400">🖐️ סכנת תפיסה</div>
+                    <div className="text-xs sm:text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
+                      אסור בהחלט לתפוס אותו מאחורי הראש – הוא מסוגל לשלוף שן אחת הצידה ולהכיש את האצבע שמחזיקה אותו!
+                    </div>
+                  </div>
+                  <div className="p-3 bg-red-500/5 dark:bg-red-950/10 border border-red-500/10 dark:border-red-900/20 rounded-xl space-y-1.5">
+                    <div className="text-sm font-extrabold text-red-650 dark:text-red-400">❌ אין נוגדן (נסיוב)</div>
+                    <div className="text-xs sm:text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed">
+                      בניגוד לצפע, לשרף עין גדי <strong>אין נסיוב רפואי</strong>. הטיפול בבית החולים מבוסס על תמיכה רפואית בלבד.
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
