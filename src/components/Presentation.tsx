@@ -199,6 +199,15 @@ export default function Presentation() {
     return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
   }, []);
 
+  // Sync manual dark mode class with the root element
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDarkMode]);
+
   const handleNext = () => {
     if (currentSlide < totalSlides - 1) {
       setCurrentSlide(currentSlide + 1);
@@ -350,8 +359,11 @@ export default function Presentation() {
       <main className="flex-1 bg-zinc-100 dark:bg-zinc-950 flex flex-col justify-center p-4 sm:p-6 transition-colors duration-300">
         {viewMode === "presentation" ? (
           /* PRESENTATION MODE: Single 16:9 Slide Canvas */
-          <div className="w-full max-w-6xl mx-auto flex flex-col gap-4">
-            <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-xl dark:shadow-emerald-950/5 overflow-hidden border border-zinc-200 dark:border-zinc-800 slide-aspect relative flex flex-col justify-between p-8 sm:p-12 transition-colors duration-300 select-none">
+          <div
+            ref={presentationRef}
+            className="w-full max-w-6xl mx-auto flex flex-col gap-4 fullscreen:max-w-none fullscreen:h-screen fullscreen:bg-zinc-950 fullscreen:dark:bg-zinc-950 fullscreen:flex fullscreen:justify-center fullscreen:items-center fullscreen:p-8 sm:fullscreen:p-12"
+          >
+            <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-xl dark:shadow-emerald-950/5 overflow-hidden border border-zinc-200 dark:border-zinc-800 slide-aspect relative flex flex-col justify-between p-8 sm:p-12 transition-colors duration-300 select-none w-full max-h-full">
               
               {/* Decorative background grid */}
               <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(16,185,129,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,185,129,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
@@ -440,7 +452,7 @@ export default function Presentation() {
             </div>
 
             {/* Quick Keyboard Help Guide */}
-            <div className="text-center text-xs text-zinc-500 dark:text-zinc-400 select-none">
+            <div className="text-center text-xs text-zinc-500 dark:text-zinc-400 select-none fullscreen:hidden">
               <span>טיפ מורה: השתמש/י במקשי <strong>חץ שמאל</strong> (הבא), <strong>חץ ימין</strong> (הקודם) או <strong>רווח</strong> (הבא) לניווט.</span>
             </div>
           </div>
