@@ -140,11 +140,18 @@ export default function Presentation() {
   const [quizSubmitted, setQuizSubmitted] = useState<boolean>(false);
   const [activeQuestion, setActiveQuestion] = useState<number>(0);
 
+  // Lightbox State
+  const [lightboxImage, setLightboxImage] = useState<typeof IMAGES[keyof typeof IMAGES] | null>(null);
+
   const totalSlides = 8;
 
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setLightboxImage(null);
+      }
+
       if (viewMode !== "presentation") return;
 
       if (e.key === "ArrowLeft") {
@@ -165,7 +172,7 @@ export default function Presentation() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentSlide, viewMode]);
+  }, [currentSlide, viewMode, lightboxImage]);
 
   // Handle Fullscreen toggle
   const toggleFullscreen = () => {
@@ -491,7 +498,9 @@ export default function Presentation() {
                 <img
                   src={img.url}
                   alt={img.commonName}
-                  className="h-10 w-10 object-cover rounded bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800"
+                  onClick={() => setLightboxImage(img)}
+                  className="h-10 w-10 object-contain rounded bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 cursor-zoom-in hover:scale-105 transition-transform"
+                  title="לחץ להגדלה"
                 />
                 <div className="min-w-0 flex-1">
                   <div className="text-xs font-bold text-zinc-800 dark:text-zinc-200 truncate">{img.commonName}</div>
@@ -513,6 +522,74 @@ export default function Presentation() {
           </div>
         </footer>
       </main>
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {lightboxImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightboxImage(null)}
+            className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 cursor-zoom-out"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-5xl w-full max-h-[85vh] flex flex-col bg-zinc-950 rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setLightboxImage(null)}
+                className="absolute top-4 right-4 z-50 p-2.5 rounded-full bg-black/60 hover:bg-black/85 text-white/80 hover:text-white border border-white/10 transition-all cursor-pointer"
+                title="סגירה (Esc)"
+              >
+                <X className="h-5 w-5" />
+              </button>
+
+              {/* Image Container */}
+              <div className="relative flex-1 flex items-center justify-center min-h-0 p-2 sm:p-4 bg-zinc-950">
+                <img
+                  src={lightboxImage.url}
+                  alt={lightboxImage.commonName}
+                  className="max-w-full max-h-[65vh] object-contain rounded-lg shadow-lg"
+                />
+              </div>
+
+              {/* Footer / Attribution Info */}
+              <div className="bg-zinc-900 border-t border-zinc-800 p-4 sm:p-5 text-right" style={{ direction: "rtl" }}>
+                <h4 className="text-lg sm:text-xl font-bold text-zinc-100 mb-1">
+                  {lightboxImage.commonName}
+                </h4>
+                <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-zinc-400">
+                  <div>
+                    <span className="font-semibold text-zinc-300">צילום: </span>
+                    {lightboxImage.author}
+                  </div>
+                  <div>
+                    <span className="font-semibold text-zinc-300">רישיון: </span>
+                    {lightboxImage.license}
+                  </div>
+                  {lightboxImage.sourceUrl && (
+                    <a
+                      href={lightboxImage.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-emerald-450 hover:underline flex items-center gap-1 inline-flex"
+                    >
+                      צפייה במקור בוויקישיתוף
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 
@@ -751,13 +828,17 @@ export default function Presentation() {
               </div>
 
               {/* Photo Display */}
-              <div className="md:col-span-5 relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-video md:aspect-square flex bg-zinc-100 dark:bg-zinc-900">
+              <div 
+                onClick={() => setLightboxImage(activeViperTab === "daboia" ? IMAGES.daboia : IMAGES.echis)}
+                className="md:col-span-5 relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-video md:aspect-[4/3] max-h-[190px] w-full flex bg-zinc-100 dark:bg-zinc-900 cursor-zoom-in"
+                title="לחץ להגדלה"
+              >
                 <img
                   src={activeViperTab === "daboia" ? IMAGES.daboia.url : IMAGES.echis.url}
                   alt={activeViperTab === "daboia" ? IMAGES.daboia.commonName : IMAGES.echis.commonName}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-zinc-950/80 to-transparent p-3 text-white text-[10px] flex justify-between">
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-zinc-950/80 to-transparent p-3 text-white text-[10px] flex justify-between w-full">
                   <span>צילום: {activeViperTab === "daboia" ? IMAGES.daboia.author : IMAGES.echis.author}</span>
                   <span className="bg-emerald-500/90 text-white font-bold px-1 rounded">{activeViperTab === "daboia" ? "צפע מצוי" : "אפעה מגוון"}</span>
                 </div>
@@ -810,11 +891,15 @@ export default function Presentation() {
 
             {/* Photo & Distribution */}
             <div className="md:col-span-5 flex flex-col gap-3">
-              <div className="relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-video md:aspect-square flex bg-zinc-100 dark:bg-zinc-900">
+              <div 
+                onClick={() => setLightboxImage(IMAGES.atractaspis)}
+                className="relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-video md:aspect-[4/3] max-h-[190px] w-full flex bg-zinc-100 dark:bg-zinc-900 cursor-zoom-in"
+                title="לחץ להגדלה"
+              >
                 <img
                   src={IMAGES.atractaspis.url}
                   alt={IMAGES.atractaspis.commonName}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute top-3 right-3 bg-black/70 text-red-400 border border-red-500/35 px-2 py-0.5 rounded text-[10px] font-bold">
                   שרף עין גדי
@@ -911,12 +996,20 @@ export default function Presentation() {
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="border border-rose-200 dark:border-rose-900/35 rounded-xl overflow-hidden bg-white dark:bg-zinc-900 flex flex-col">
-                      <img src={IMAGES.daboia.url} alt="צפע" className="h-32 object-cover" />
+                    <div 
+                      onClick={() => setLightboxImage(IMAGES.daboia)}
+                      className="border border-rose-200 dark:border-rose-900/35 rounded-xl overflow-hidden bg-white dark:bg-zinc-900 flex flex-col cursor-zoom-in group"
+                      title="לחץ להגדלה"
+                    >
+                      <img src={IMAGES.daboia.url} alt="צפע" className="h-32 w-full object-contain bg-zinc-50 dark:bg-zinc-950 transition-transform duration-500 group-hover:scale-105" />
                       <div className="p-2 text-center text-xs font-bold text-rose-600 bg-rose-500/10">צפע (פס זיגזג רציף)</div>
                     </div>
-                    <div className="border border-emerald-250 dark:border-emerald-900/35 rounded-xl overflow-hidden bg-white dark:bg-zinc-900 flex flex-col">
-                      <img src={IMAGES.nummifer.url} alt="זעמן מטבעות" className="h-32 object-cover" />
+                    <div 
+                      onClick={() => setLightboxImage(IMAGES.nummifer)}
+                      className="border border-emerald-200 dark:border-emerald-900/35 rounded-xl overflow-hidden bg-white dark:bg-zinc-900 flex flex-col cursor-zoom-in group"
+                      title="לחץ להגדלה"
+                    >
+                      <img src={IMAGES.nummifer.url} alt="זעמן מטבעות" className="h-32 w-full object-contain bg-zinc-50 dark:bg-zinc-950 transition-transform duration-500 group-hover:scale-105" />
                       <div className="p-2 text-center text-xs font-bold text-emerald-600 bg-emerald-500/10">זעמן מטבעות (עיגולים מופרדים)</div>
                     </div>
                   </div>
@@ -940,8 +1033,12 @@ export default function Presentation() {
                       </p>
                     </div>
                   </div>
-                  <div className="md:col-span-5 relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-video md:aspect-square flex">
-                    <img src={IMAGES.nummifer.url} alt={IMAGES.nummifer.commonName} className="w-full h-full object-cover" />
+                  <div 
+                    onClick={() => setLightboxImage(IMAGES.nummifer)}
+                    className="md:col-span-5 relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-video md:aspect-[4/3] max-h-[190px] w-full flex bg-zinc-100 dark:bg-zinc-900 cursor-zoom-in"
+                    title="לחץ להגדלה"
+                  >
+                    <img src={IMAGES.nummifer.url} alt={IMAGES.nummifer.commonName} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
                     <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-zinc-950/80 to-transparent p-2.5 text-white text-[10px]">
                       <span>צילום: ויקישיתוף</span>
                     </div>
@@ -966,8 +1063,12 @@ export default function Presentation() {
                       </p>
                     </div>
                   </div>
-                  <div className="md:col-span-5 relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-video md:aspect-square flex">
-                    <img src={IMAGES.jugularis.url} alt={IMAGES.jugularis.commonName} className="w-full h-full object-cover" />
+                  <div 
+                    onClick={() => setLightboxImage(IMAGES.jugularis)}
+                    className="md:col-span-5 relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 aspect-video md:aspect-[4/3] max-h-[190px] w-full flex bg-zinc-100 dark:bg-zinc-900 cursor-zoom-in"
+                    title="לחץ להגדלה"
+                  >
+                    <img src={IMAGES.jugularis.url} alt={IMAGES.jugularis.commonName} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
                     <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-zinc-950/80 to-transparent p-2.5 text-white text-[10px]">
                       <span>צילום: ויקישיתוף</span>
                     </div>
